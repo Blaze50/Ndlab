@@ -1,37 +1,4 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-const year = document.getElementById('year');
-const form = document.getElementById('contactForm');
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
-
-if (menuToggle && mainNav) {
-  menuToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
-  });
-
-  mainNav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => mainNav.classList.remove('open'));
-  });
-}
-
-if (form) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    if (submitButton) {
-      const originalText = submitButton.textContent;
-      submitButton.textContent = 'Request Sent';
-      submitButton.disabled = true;
-
-      setTimeout(() => {
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-        form.reset();
-      }, 2000);
-    }
-  });
-}
+const motion = document.createElement('style');
+motion.textContent = `.visual:after{content:'';position:absolute;z-index:3;left:0;right:0;height:86px;pointer-events:none;background:linear-gradient(transparent,#ffffff77,transparent);animation:ndlabScan 4s linear infinite}.grid{animation:ndlabGrid 7s linear infinite}.blue{animation:ndlabBlue 5s ease-in-out infinite}.lime{animation:ndlabLime 6s ease-in-out infinite}.laptop{animation:ndlabLaptop 4.5s ease-in-out infinite}.sticker.one{animation:ndlabTag 4s ease-in-out infinite}.sticker.two{animation:ndlabTag 4.6s ease-in-out infinite reverse}.screen p{animation:ndlabTerminal 2.5s steps(2) infinite}@keyframes ndlabScan{from{top:-86px}to{top:100%}}@keyframes ndlabGrid{to{background-position:37px 37px}}@keyframes ndlabBlue{50%{transform:translate(16px,-13px)}}@keyframes ndlabLime{50%{transform:translate(-14px,14px)}}@keyframes ndlabLaptop{50%{transform:translateX(-50%) translateY(-11px) rotate(-2deg)}}@keyframes ndlabTag{50%{margin-top:-9px}}@keyframes ndlabTerminal{50%{opacity:.62}}`;
+document.head.appendChild(motion);
+document.querySelector('#repairForm').addEventListener('submit', event => { event.preventDefault(); document.querySelector('#message').textContent = 'Thanks — NDLAB will be in touch shortly.'; event.target.reset(); });
